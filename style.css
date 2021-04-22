@@ -1,0 +1,9 @@
+body {
+    margin: 40px auto;
+    max-width: 650px;
+    background-color: #444444;
+}
+
+.lead {
+    color: black;
+}
