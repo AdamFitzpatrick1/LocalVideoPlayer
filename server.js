@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 
+const videoPath = "example.mp4";
+
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
@@ -9,13 +11,11 @@ app.get("/", function(req, res) {
 app.get("/video", function(req, res) {
     // Ensure there is a range given for the video
     const range = req.headers.range;
-    if (!range) {
+    if (!range)
         res.status(400).send("Requires Range header");
-    }
 
     // get video stats (about 61MB)
-    const videoPath = "example.mp4";
-    const videoSize = fs.statSync("example.mp4").size;
+    const videoSize = fs.statSync(videoPath).size;
 
     // Parse Range
     // Example: "bytes=32324-"
@@ -40,9 +40,11 @@ app.get("/video", function(req, res) {
 
     // Stream the video chunk to the client
     videoStream.pipe(res);
-
-
 });
+
+app.get("/download", (req, res) => {
+    res.download(`${__dirname}/${videoPath}`);
+})
 
 app.listen(8000, function() {
     console.log("\n");
