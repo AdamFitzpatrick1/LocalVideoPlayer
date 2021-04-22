@@ -40,6 +40,8 @@ app.get("/video", function(req, res) {
 
     // Stream the video chunk to the client
     videoStream.pipe(res);
+
+
 });
 
 app.listen(8000, function() {
