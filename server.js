@@ -50,4 +50,5 @@ app.listen(8000, function() {
     console.log("\n");
     console.log("Listening on port 8000!");
     console.log("Navigate to localhost:8000 in your browser to view the page");
+    console.log("If you wish to view the video on a different device, use the IPv4 address of the local computer and append :8000 to the end");
 });
